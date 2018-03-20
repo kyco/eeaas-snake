@@ -1,18 +1,18 @@
-import "./snake.css";
-import $ from "jquery";
+import './snake.css';
+import $ from 'jquery';
 
 const Snake = {
-  name: "Snake",
+  name: 'Snake',
 
-  startTrigger: "snake",
+  startTrigger: 'snake',
 
-  stopTrigger: "esc",
+  stopTrigger: 'esc',
 
   stop() {
     window.snake = window.snake || {};
     window.snake.active = false;
     clearInterval(window.snake.gameInterval);
-    $(document).off("keydown.snake", window.snake.keyPush);
+    $(document).off('keydown.snake', window.snake.keyPush);
     if (window.snake.markup && window.snake.markup.parentNode) {
       window.snake.markup.parentNode.removeChild(window.snake.markup);
     }
@@ -36,27 +36,23 @@ const Snake = {
     window.snake.tail = window.snake.tailInitial; // start length
     window.snake.score = 0;
 
-    $("body").append(`
+    $('body').append(`
       <div id="snake-game-wrapper">
         <div id="snake-game-score">${window.snake.score}</div>
-        <canvas id="snake-game-canvas" width="${window.snake.width}" height="${
-      window.snake.height
-    }"></canvas>
+        <canvas id="snake-game-canvas" width="${window.snake.width}" height="${window.snake.height}"></canvas>
       </div>
     `);
 
-    window.snake.markup = document.getElementById("snake-game-wrapper");
-    window.snake.canvas = document.getElementById("snake-game-canvas");
-    window.snake.context = window.snake.canvas.getContext("2d");
-    window.snake.canvas.style.top = `${window.innerHeight / 2 -
-      window.snake.canvas.offsetHeight / 2}px`;
-    window.snake.canvas.style.left = `${window.innerWidth / 2 -
-      window.snake.canvas.offsetWidth / 2}px`;
+    window.snake.markup = document.getElementById('snake-game-wrapper');
+    window.snake.canvas = document.getElementById('snake-game-canvas');
+    window.snake.context = window.snake.canvas.getContext('2d');
+    window.snake.canvas.style.top = `${window.innerHeight / 2 - window.snake.canvas.offsetHeight / 2}px`;
+    window.snake.canvas.style.left = `${window.innerWidth / 2 - window.snake.canvas.offsetWidth / 2}px`;
 
     // Game logic
     window.snake.game = function() {
       window.snake.score = window.snake.tail - window.snake.tailInitial;
-      $("#snake-game-score").html(window.snake.score);
+      $('#snake-game-score').html(window.snake.score);
       window.snake.px += window.snake.xv;
       window.snake.py += window.snake.yv;
 
@@ -73,14 +69,9 @@ const Snake = {
         window.snake.py = 0;
       }
 
-      window.snake.context.fillStyle = "#fff";
-      window.snake.context.fillRect(
-        0,
-        0,
-        window.snake.canvas.width,
-        window.snake.canvas.height
-      );
-      window.snake.context.fillStyle = "#0078bf";
+      window.snake.context.fillStyle = '#fff';
+      window.snake.context.fillRect(0, 0, window.snake.canvas.width, window.snake.canvas.height);
+      window.snake.context.fillStyle = '#0078bf';
 
       for (let i = 0; i < window.snake.trail.length; i++) {
         window.snake.context.fillRect(
@@ -89,10 +80,7 @@ const Snake = {
           window.snake.gs - window.snake.random,
           window.snake.gs - window.snake.random
         );
-        if (
-          window.snake.trail[i].x === window.snake.px &&
-          window.snake.trail[i].y === window.snake.py
-        ) {
+        if (window.snake.trail[i].x === window.snake.px && window.snake.trail[i].y === window.snake.py) {
           window.snake.tail = window.snake.tailInitial;
         }
       }
@@ -106,16 +94,13 @@ const Snake = {
         window.snake.trail.shift();
       }
 
-      if (
-        window.snake.ax === window.snake.px &&
-        window.snake.ay === window.snake.py
-      ) {
+      if (window.snake.ax === window.snake.px && window.snake.ay === window.snake.py) {
         window.snake.tail++;
         window.snake.ax = Math.floor(Math.random() * window.snake.tc);
         window.snake.ay = Math.floor(Math.random() * window.snake.tc);
       }
 
-      window.snake.context.fillStyle = "#339e00"; // same as $ui-kit-green
+      window.snake.context.fillStyle = '#339e00';
       window.snake.context.fillRect(
         window.snake.ax * window.snake.gs,
         window.snake.ay * window.snake.gs,
@@ -148,11 +133,8 @@ const Snake = {
     };
 
     // Start game
-    $(document).on("keydown.snake", window.snake.keyPush);
-    window.snake.gameInterval = setInterval(
-      window.snake.game,
-      window.snake.speed
-    );
+    $(document).on('keydown.snake', window.snake.keyPush);
+    window.snake.gameInterval = setInterval(window.snake.game, window.snake.speed);
   }
 };
 
