@@ -1,6 +1,6 @@
 {
   "name": "eeaas-snake",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "Snake",
   "main": "snake.js",
   "scripts": {
