@@ -1,4 +1,4 @@
-import './snake.css';
+import './style.css';
 
 export default {
   name: 'Snake',
