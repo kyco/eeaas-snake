@@ -38,13 +38,13 @@ export default {
     window.snake.canvasId = 'snake-game-canvas';
     window.snake.scoreId = 'snake-game-score';
 
-    const gameMarkup = document.createElement('div');
-    gameMarkup.id = window.snake.wrapperId;
-    gameMarkup.innerHTML = `
+    const markup = document.createElement('div');
+    markup.id = window.snake.wrapperId;
+    markup.innerHTML = `
       <div id="${window.snake.scoreId}">${window.snake.score}</div>
       <canvas id="${window.snake.canvasId}" width="${window.snake.width}" height="${window.snake.height}"></canvas>
     `;
-    document.body.appendChild(gameMarkup);
+    document.body.appendChild(markup);
 
     window.snake.markup = document.getElementById(window.snake.wrapperId);
     window.snake.canvas = document.getElementById(window.snake.canvasId);
