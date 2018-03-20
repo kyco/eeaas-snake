@@ -1,6 +1,6 @@
 import './snake.css';
 
-const Snake = {
+export default {
   name: 'Snake',
 
   startTrigger: 'snake',
@@ -140,5 +140,3 @@ const Snake = {
     window.snake.gameInterval = setInterval(window.snake.game, window.snake.speed);
   }
 };
-
-export default Snake;
