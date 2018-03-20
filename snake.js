@@ -22,18 +22,18 @@ const Snake = {
     // Config
     window.snake = window.snake || {};
     window.snake.active = true;
-    window.snake.width = 300;
-    window.snake.height = 300;
+    window.snake.width = 300; // board width
+    window.snake.height = 300; // board height
     window.snake.speed = 80; // higher is slower
-    window.snake.tailInitial = 5;
-    window.snake.px = window.snake.py = 10; // starting position
-    window.snake.gs = 15;
-    window.snake.tc = 20;
+    window.snake.tailInitial = 5; // size of the snake at the start of the game
+    window.snake.px = window.snake.py = 10; // starting position, from top-left
+    window.snake.gs = 15; // size of blocks
+    window.snake.tc = 20; // size of grid
     window.snake.ax = window.snake.ay = 15;
     window.snake.xv = window.snake.yv = 0;
     window.snake.random = 2;
     window.snake.trail = [];
-    window.snake.tail = window.snake.tailInitial; // start length
+    window.snake.tail = window.snake.tailInitial;
     window.snake.score = 0;
 
     $('body').append(`
