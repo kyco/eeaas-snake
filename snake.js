@@ -1,5 +1,4 @@
 import './snake.css';
-import $ from 'jquery';
 
 const Snake = {
   name: 'Snake',
@@ -12,7 +11,7 @@ const Snake = {
     window.snake = window.snake || {};
     window.snake.active = false;
     clearInterval(window.snake.gameInterval);
-    $(document).off('keydown.snake', window.snake.keyPush);
+    document.removeEventListener('keydown', window.snake.keyPush);
     if (window.snake.markup && window.snake.markup.parentNode) {
       window.snake.markup.parentNode.removeChild(window.snake.markup);
     }
@@ -35,16 +34,20 @@ const Snake = {
     window.snake.trail = [];
     window.snake.tail = window.snake.tailInitial;
     window.snake.score = 0;
+    window.snake.wrapperId = 'snake-game-wrapper';
+    window.snake.canvasId = 'snake-game-canvas';
+    window.snake.scoreId = 'snake-game-score';
 
-    $('body').append(`
-      <div id="snake-game-wrapper">
-        <div id="snake-game-score">${window.snake.score}</div>
-        <canvas id="snake-game-canvas" width="${window.snake.width}" height="${window.snake.height}"></canvas>
-      </div>
-    `);
+    const gameMarkup = document.createElement('div');
+    gameMarkup.id = window.snake.wrapperId;
+    gameMarkup.innerHTML = `
+      <div id="${window.snake.scoreId}">${window.snake.score}</div>
+      <canvas id="${window.snake.canvasId}" width="${window.snake.width}" height="${window.snake.height}"></canvas>
+    `;
+    document.body.appendChild(gameMarkup);
 
-    window.snake.markup = document.getElementById('snake-game-wrapper');
-    window.snake.canvas = document.getElementById('snake-game-canvas');
+    window.snake.markup = document.getElementById(window.snake.wrapperId);
+    window.snake.canvas = document.getElementById(window.snake.canvasId);
     window.snake.context = window.snake.canvas.getContext('2d');
     window.snake.canvas.style.top = `${window.innerHeight / 2 - window.snake.canvas.offsetHeight / 2}px`;
     window.snake.canvas.style.left = `${window.innerWidth / 2 - window.snake.canvas.offsetWidth / 2}px`;
@@ -52,7 +55,7 @@ const Snake = {
     // Game logic
     window.snake.game = function() {
       window.snake.score = window.snake.tail - window.snake.tailInitial;
-      $('#snake-game-score').html(window.snake.score);
+      document.getElementById(window.snake.scoreId).innerHTML = window.snake.score;
       window.snake.px += window.snake.xv;
       window.snake.py += window.snake.yv;
 
@@ -133,7 +136,7 @@ const Snake = {
     };
 
     // Start game
-    $(document).on('keydown.snake', window.snake.keyPush);
+    document.addEventListener('keydown', window.snake.keyPush);
     window.snake.gameInterval = setInterval(window.snake.game, window.snake.speed);
   }
 };

@@ -21,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/kyco/eeaas-snake/issues"
   },
-  "homepage": "https://github.com/kyco/eeaas-snake#readme",
-  "dependencies": {
-    "jquery": "^3.3.1"
-  }
+  "homepage": "https://github.com/kyco/eeaas-snake#readme"
 }
