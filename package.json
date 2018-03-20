@@ -1,6 +1,6 @@
 {
   "name": "eeaas-snake",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Snake",
   "main": "snake.js",
   "scripts": {
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/kyco/eeaas-snake.git"
   },
-  "keywords": ["eeaas", "eeaas-snake", "eeaas snake", "snake"],
+  "keywords": [
+    "eeaas",
+    "eeaas-snake",
+    "eeaas snake",
+    "snake"
+  ],
   "author": "Cornelius Weidmann <cornelius@kyco.io> (https://kyco.io)",
   "license": "MIT",
   "bugs": {
