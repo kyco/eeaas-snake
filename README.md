@@ -2,13 +2,16 @@
 
 This is an easter egg to be used with the "eeaas" package.
 
+
 ## Installation
 
 ```javascript
 yarn add eeaas
 yarn add eeaas-snake
 ```
+
 Once installed you can import the easter egg and enable it.
+
 
 ## Usage
 
@@ -20,13 +23,12 @@ Eeaas.register(Snake); // Register snake
 Eeaas.enable(); // Enable all easter eggs, or alternatively use `Eeaas.Eggs.Snake.enable()` to only enable snake
 ```
 
-To test if it works type "snake" while the app is running. You should be presented with a 2D snake game. Use "esc" to cancel the game.
+To test if it works type "snake" while the app is running. You should be presented with a 2D snake game. Use the "esc" key to cancel the game.
 
-## Customisation
 
-You can change the start and stop triggers to your liking, e.g. if you want different keylisteners simply change the `startTrigger` and `stopTrigger` properties.
+## Custom keylisteners
 
-Example:
+To use different keylisteners change the `startTrigger` and/or `stopTrigger` attributes on the Snake object.
 
 ```javascript
 import Eeaas from 'eeaas';
@@ -39,4 +41,41 @@ Eeaas.register(Snake);
 Eeaas.enable();
 ```
 
-Now, typing "secretstring" will launch the game. The game can be cancelled by pressing the "esc" key or typing "stop".
+Now, typing "secretstring" will launch the game. Cancel the game by pressing the "esc" key or typing "stop".
+
+
+## Custom start and/or stop trigger methods
+
+To write your own custom methods you'll have to overwrite the `enable` and `disable` attributes on the Snake object as well as the relevant "trigger" attributes.
+
+Example: You want to trigger the game only when a button is clicked
+
+Add a button to your markup:
+```
+<button id="snake-trigger-button">Snake trigger</button>
+```
+
+Update the `enable`, `disable` and `startTrigger` attributes:
+```javascript
+import Eeaas from 'eeaas';
+import Snake from 'eeaas-snake';
+
+Object.assign(Snake, {
+  enable() {
+    this.startTrigger();
+  },
+
+  disable() {
+    document.getElementById('snake-trigger-button').removeEventListener('click', this.start);
+    this.stop();
+  },
+
+  startTrigger() {
+    // The button needs to be in the DOM by the time this code runs
+    document.getElementById('snake-trigger-button').addEventListener('click', this.start);
+  }
+});
+
+Eeaas.register(Snake);
+Eeaas.enable();
+```
