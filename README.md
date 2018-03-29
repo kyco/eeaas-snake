@@ -1,6 +1,4 @@
-# eeaas-snake
-
-Snake
+# Snake
 
 This is an easter egg to be used with the "eeaas" package.
 
