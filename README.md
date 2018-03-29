@@ -35,8 +35,8 @@ import Snake from 'eeaas-snake';
 Snake.startTrigger = 'secretstring';
 Snake.stopTrigger = ['esc', 'spacebar'];
 
-Eeaas.register(Snake); // Register snake
-Eeaas.enable(); // Enable all easter eggs
+Eeaas.register(Snake);
+Eeaas.enable();
 ```
 
 Now, typing "secretstring" will launch the game. The game can be cancelled now by pressing the "esc" key or the "spacebar" key.
