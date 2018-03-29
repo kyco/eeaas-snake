@@ -33,10 +33,10 @@ import Eeaas from 'eeaas';
 import Snake from 'eeaas-snake';
 
 Snake.startTrigger = 'secretstring';
-Snake.stopTrigger = ['esc', 'spacebar'];
+Snake.stopTrigger = ['esc', 'stop'];
 
 Eeaas.register(Snake);
 Eeaas.enable();
 ```
 
-Now, typing "secretstring" will launch the game. The game can be cancelled now by pressing the "esc" key or the "spacebar" key.
+Now, typing "secretstring" will launch the game. The game can be cancelled by pressing the "esc" key or typing "stop".
